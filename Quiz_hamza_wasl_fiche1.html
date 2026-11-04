@@ -1,0 +1,1163 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quiz Tajwīd</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Naskh+Arabic:wght@400;600&family=Playfair+Display:wght@500;600;700&display=swap">
+<style>
+/* Style des documents iQranee Niveau 1-2 (Fiches mémo, Tableau des confusions, Cahier 2) :
+   feuilles blanches sur fond gris, bandeau de couleur, en-tête à pastilles, « À retenir », sommaire cliquable.
+   Thème clair unique, comme les documents imprimés. Une couleur par exercice. */
+:root{
+  --green:#3C5A47; --green-deep:#2C4636; --forest:#3D4A35; --green-wash:#EDF3EF;
+  --terra:#A2704F; --terra-deep:#8A5A3B; --terra-wash:#F7EEE7;
+  --blue:#3F6784; --blue-deep:#2D4C63; --blue-wash:#EAF0F5;
+  --ochre:#A27B25; --ochre-deep:#7A5B17; --ochre-wash:#F8F1E0;
+  --teal:#2F7271; --teal-deep:#215655; --teal-wash:#E6F1F0;
+  --red:#B4432F; --red-wash:#FBEDEA;
+  --paper:#FEFFFE; --desk:#E6E8E6; --sand:#F6F8F8; --cream:#FBF9F4;
+  --ink:#272C27; --muted:#5A6058; --taupe:#6F6B62; --line:#E3E8E6; --white:#FFFFFF;
+  --serif:'Playfair Display',Georgia,serif; --ui:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ar:'Noto Naskh Arabic','Amiri','Traditional Arabic',serif;
+  --shadow:0 7px 18px -13px rgba(30,44,40,.5);
+  --th:var(--blue); --thd:var(--blue-deep); --wash:var(--blue-wash);
+  color-scheme:light;
+}
+.fa{--th:var(--blue);--thd:var(--blue-deep);--wash:var(--blue-wash)}
+.fb{--th:var(--terra);--thd:var(--terra-deep);--wash:var(--terra-wash)}
+.ff{--th:var(--teal);--thd:var(--teal-deep);--wash:var(--teal-wash)}
+.fe{--th:var(--green);--thd:var(--green-deep);--wash:var(--green-wash)}
+.fn{--th:#6B726E;--thd:#3D4440;--wash:#F4F5F4}
+
+*{box-sizing:border-box}
+body{background:var(--desk);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  font-variant-ligatures:none;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 40px}
+body *{font-feature-settings:"liga" 0,"dlig" 0}
+.sheet{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.ar{font-family:var(--ar);direction:rtl;unicode-bidi:isolate}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance}
+p{margin:0}
+b{font-weight:600}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+button:focus-visible,a:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+
+/* Feuille */
+.paper{background:var(--paper);border-radius:6px;box-shadow:0 2px 16px rgba(30,44,40,.10);position:relative;overflow:hidden;
+  padding:calc(16px + 22px) clamp(18px,5vw,48px) 22px}
+.paper::before{content:"";position:absolute;left:0;right:0;top:0;height:16px;background:var(--th)}
+.foot{margin-top:26px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:11px;letter-spacing:.03em;color:var(--taupe);border-top:1px solid var(--line);padding-top:8px}
+.foot .up{color:var(--th);font-weight:700;letter-spacing:.04em}
+
+/* Couverture */
+.cover{background:var(--forest);color:var(--white);text-align:center;padding:34px 20px 30px}
+.cover::before{height:auto;inset:0;background-color:transparent;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.06' stroke-width='1'%3E%3Crect x='22' y='22' width='40' height='40'/%3E%3Crect x='22' y='22' width='40' height='40' transform='rotate(45 42 42)'/%3E%3C/g%3E%3C/svg%3E")}
+.cover > *{position:relative}
+.cover .mono{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1;margin-bottom:14px}
+.cover .h-ar{font-family:var(--ar);direction:rtl;font-size:30px;line-height:1.8;color:rgba(255,255,255,.78)}
+.cover h1{font-size:clamp(34px,7vw,48px);line-height:1.08}
+.cover .sub{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:14px;line-height:1.7}
+.cover .fams{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.cover .fams span{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 11px}
+
+/* En-tête de fiche */
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--th)}
+.big-title{font-size:clamp(26px,5vw,32px);line-height:1.12;margin-top:4px}
+.fhead{background:var(--wash);border-radius:15px;padding:14px 20px 14px;position:relative}
+.fhead .tags{display:flex;gap:6px;flex-wrap:wrap;padding-right:52px}
+.ftag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--thd);background:var(--white);border:1.5px solid var(--thd);border-radius:999px;padding:3px 10px}
+.ftag.fill{background:var(--th);border-color:var(--th);color:var(--white)}
+.ftag.warn{background:var(--ochre-wash);border-color:var(--ochre);color:var(--ochre-deep)}
+.fhead .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px;padding-right:52px}
+.fhead h2{font-size:clamp(22px,4.5vw,27px);line-height:1.15;color:var(--thd)}
+.fhead .arn{font-family:var(--ar);direction:rtl;font-size:30px;line-height:1.7;color:var(--thd);margin-left:auto}
+.fnum{position:absolute;right:18px;top:12px;width:40px;height:40px;border-radius:999px;background:var(--th);color:var(--white);font-family:var(--serif);font-size:20px;display:grid;place-items:center}
+.retenir{margin-top:12px;background:var(--white);border-radius:12px;padding:11px 16px;border-left:6px solid var(--th);box-shadow:0 0 0 1px var(--line)}
+.lab{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;display:block;margin-bottom:3px;color:var(--th)}
+.retenir p{font-size:15px;line-height:1.75;font-weight:500}
+
+/* Blocs numérotés */
+.block{margin-top:24px}
+.bt{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--th);margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.bt .n{width:19px;height:19px;border-radius:999px;background:var(--th);color:var(--white);display:grid;place-items:center;font-size:10px;letter-spacing:0;flex:none}
+.bt::after{content:"";flex:1;height:1px;background:var(--line)}
+.txt{font-size:14px;line-height:1.8}
+.muted{color:var(--muted)}
+p .ar,li .ar,.txt .ar,.cond .ar,td .ar,.q .ar{font-size:1.35em;line-height:1;vertical-align:-.08em}
+
+/* Cartes */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.g2{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--line);border-top:3px solid var(--th);border-radius:12px;padding:10px 14px 12px;box-shadow:var(--shadow);text-align:center}
+.card.neutral{border-top-color:#8A918C}
+.card .big-sign{font-family:var(--ar);font-size:44px;line-height:1.7;color:var(--thd)}
+.card.neutral .big-sign{color:var(--ink)}
+.card p{font-size:13px;line-height:1.6}
+.words{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.w{display:flex;flex-direction:column;align-items:center;background:#F7F8F7;border:1px solid #E7EAE8;border-radius:10px;padding:2px 16px 8px;min-width:118px}
+.w.pr{border:1.5px solid var(--th);background:var(--wash)}
+.w .ar{font-size:27px;line-height:2.1}
+.w .t{font-size:12px;color:var(--thd);font-weight:600;font-style:italic;line-height:1.3}
+
+/* Étapes ①②③ */
+.steps{display:flex;flex-direction:column;gap:8px}
+.st{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:8px;align-items:center}
+.st .q{background:var(--white);border:1.5px solid var(--thd);border-radius:12px;padding:8px 14px;font-size:14px;line-height:1.5}
+.st .q small{display:block;color:var(--muted);font-size:12px}
+.st .arrow{text-align:center;color:var(--th);font-weight:700;font-size:10px;line-height:1.1}
+.st .res{background:var(--wash);border-radius:12px;padding:4px 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.st .res .vb{width:30px;height:30px;border-radius:999px;background:var(--thd);color:var(--white);font-weight:700;display:grid;place-items:center;flex:none}
+.st .res .ar{font-size:26px;line-height:1.9}
+.st .res em{font-size:13px;color:var(--thd);font-weight:600}
+.no{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--muted);padding-left:24px}
+@media (max-width:560px){.st{grid-template-columns:1fr}.st .arrow{display:none}}
+
+/* Encadrés */
+.astuce,.piege,.ok{border-radius:12px;padding:12px 16px;display:flex;gap:11px;align-items:flex-start}
+.astuce{background:var(--wash)}
+.astuce.neutral{background:#F2F3F2}
+.ok{background:var(--green-wash)}
+.piege{background:var(--red-wash)}
+.ic{flex:none;width:26px;height:26px;border-radius:999px;color:var(--white);display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--th)}
+.astuce.neutral .ic{background:#8A918C}
+.ok .ic{background:var(--green)}
+.piege .ic{background:var(--red)}
+.astuce.neutral .lab{color:#6B726E}
+.ok .lab{color:var(--green)}
+.piege .lab{color:var(--red)}
+.box-body{min-width:0;flex:1}
+.box-body p,.box-body li{font-size:14px;line-height:2.1}
+.box-body li .ar,.box-body p .ar{font-size:1.25em;line-height:1.2}
+.box-body ul{margin:3px 0 0;padding-left:18px}
+.box-body li + li{margin-top:4px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.jd{padding:10px 16px;border-radius:12px;border:1.5px dashed var(--th);font-size:14px;line-height:1.7;font-style:italic}
+.jd b{font-style:normal;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--th);margin-right:6px}
+.tie{display:inline-block;width:.55em;height:.32em;border:1.5px solid currentColor;border-top:0;border-radius:0 0 .55em .55em;vertical-align:-.1em;margin:0 1px}
+
+/* Sommaire */
+.tocnote{display:flex;gap:12px;align-items:center;background:#FFF8E6;border:1.5px solid #E7C66B;border-radius:12px;padding:10px 16px;margin-top:14px;font-size:13px;line-height:1.7}
+.tocnote .ic{background:#E7B93B;width:30px;height:30px;font-size:15px}
+.toc{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.toc .grp{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:10px 0 1px 4px}
+.toc .it{display:grid;grid-template-columns:44px minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:4px 12px;border-radius:11px;background:var(--wash);text-align:left;width:100%;transition:transform .12s}
+.toc .it:hover:not(:disabled){transform:translateX(3px)}
+.toc .it:disabled{opacity:.5;cursor:not-allowed}
+.toc .it .n{min-width:38px;height:28px;border-radius:999px;background:var(--th);color:var(--white);font-family:var(--serif);font-size:14px;display:grid;place-items:center;padding:0 6px}
+.toc .it .ti{font-size:14px;font-weight:600;color:var(--thd);line-height:1.3;min-width:0;padding-block:6px}
+.toc .it .ti small{display:block;font-size:11.5px;font-weight:400;font-style:italic;color:var(--muted)}
+.toc .it .ar{font-size:23px;line-height:1.85;color:var(--thd)}
+.toc .it .pp{font-weight:700;color:var(--thd);font-size:12px;text-align:right;white-space:nowrap}
+.toc .it .pp::after{content:" →";color:var(--th)}
+@media (max-width:560px){.toc .it{grid-template-columns:40px minmax(0,1fr) auto}.toc .it .ar{display:none}.toc .it .pp{white-space:normal;max-width:72px}}
+.lenrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--muted);font-weight:600}
+.seg{display:inline-flex;gap:6px}
+.seg button{border:1.5px solid var(--line);border-radius:999px;padding:4px 14px;font-weight:600;font-size:13px;color:var(--muted);background:var(--white)}
+.seg button[aria-pressed="true"]{background:var(--th);border-color:var(--th);color:var(--white)}
+
+/* Quiz */
+.progress{display:flex;align-items:center;gap:12px;margin-top:14px}
+.prog{flex:1;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--th);transition:width .3s}
+.count{font-size:13px;font-weight:700;color:var(--thd);font-variant-numeric:tabular-nums}
+.streak{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ochre-deep);background:var(--ochre-wash);border-radius:999px;padding:3px 10px}
+.question{background:var(--white);border:1.5px dashed var(--th);border-radius:14px;padding:4px 14px 8px;text-align:center}
+.question .line{font-family:var(--ar);direction:rtl;font-size:clamp(36px,8vw,52px);line-height:2.15;color:var(--ink);word-spacing:8px;overflow-wrap:anywhere}
+.question .ref{font-size:12px;color:var(--muted);font-style:italic;margin-top:2px;line-height:1.5}
+.line .sel{color:var(--th)}
+.line .g-ok{color:var(--green)}
+.line .g-bad{color:var(--red)}
+.line .g-miss{color:var(--ochre)}
+
+.chips{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:center;direction:rtl}
+.wordchips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.chip{font-family:var(--ar);font-size:27px;line-height:1;min-width:50px;height:62px;padding:0 8px;display:grid;place-items:center;border-radius:10px;background:var(--white);border:1.5px solid var(--th);color:var(--thd)}
+.chip:hover:not(:disabled){background:var(--wash)}
+.chip[aria-pressed="true"]{background:var(--th);color:var(--white)}
+.chip.ok{background:var(--green-wash);border-color:var(--green);color:var(--green)}
+.chip.bad{background:var(--red-wash);border-color:var(--red);color:var(--red)}
+.chip.miss{background:var(--ochre-wash);border-color:var(--ochre);color:var(--ochre-deep);border-style:dashed}
+.chip:disabled{cursor:default}
+.nonebtn{display:block;margin:14px auto 0;padding:7px 16px;border-radius:999px;border:1.5px dashed #9AA19C;font-weight:600;font-size:13px;color:var(--muted);background:var(--white)}
+.nonebtn[aria-pressed="true"]{border-style:solid;border-color:var(--th);background:var(--th);color:var(--white)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:4px}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1.5px solid}
+.legend .l-ok::before{border-color:var(--green);background:var(--green-wash)}
+.legend .l-miss::before{border-color:var(--ochre);background:var(--ochre-wash);border-style:dashed}
+.legend .l-bad::before{border-color:var(--red);background:var(--red-wash)}
+
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.opt{position:relative;background:var(--wash);border:1.5px solid var(--th);border-radius:12px;padding:10px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.opt:hover:not(:disabled){background:var(--white)}
+.opt .k{align-self:flex-start;width:20px;height:20px;border-radius:999px;background:var(--th);color:var(--white);font-size:11px;font-weight:700;display:grid;place-items:center;line-height:1}
+.opt.ok .k{background:var(--green)} .opt.bad .k{background:var(--red)}
+.opt.long{flex-direction:row;align-items:center;gap:10px;padding:8px 10px}
+.opt.long .k{align-self:center;flex:none}
+.opt .cond{font-size:13px;color:var(--ink);font-weight:500}
+.opt .cond b{color:var(--thd)}
+.opt .res{font-family:var(--ar);direction:rtl;font-size:30px;line-height:1.75;color:var(--thd);background:var(--white);border:1.5px solid var(--th);border-radius:11px;min-width:96px;padding:0 12px}
+.opt.long .res{font-size:clamp(22px,5vw,30px);min-width:0;flex:1;line-height:2}
+.opt.ok{background:var(--green-wash);border-color:var(--green)}
+.opt.ok .res{border-color:var(--green);color:var(--green)}
+.opt.bad{background:var(--red-wash);border-color:var(--red)}
+.opt.bad .res{border-color:var(--red);color:var(--red)}
+.opt.dim{opacity:.5}
+.opt:disabled{cursor:default}
+@media (max-width:620px){.opts.long3{grid-template-columns:1fr}}
+.opts:not(.long3) .opt .res{white-space:nowrap;line-height:2.1}
+@media (max-width:420px){.opt .res{font-size:24px;min-width:0;width:100%}.opts:not(.long3) .opt .res{font-size:21px;padding:0 4px}.opt .cond{font-size:11.5px}}
+
+.read{display:flex;gap:10px 14px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.read .ar{font-size:28px;line-height:1.7;color:var(--thd)}
+.read em{font-size:15px;color:var(--thd);font-weight:600}
+.read .gl{font-size:13px;color:var(--muted)}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;background:var(--th);color:var(--white);font-weight:600;font-size:14px;border:1.5px solid var(--th)}
+.btn:hover:not(:disabled){background:var(--thd);border-color:var(--thd)}
+.btn.ghost{background:var(--white);color:var(--thd)}
+.btn.ghost:hover:not(:disabled){background:var(--wash);color:var(--thd)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.hint{font-size:12px;color:var(--muted)}
+kbd{font-family:var(--ui);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--white)}
+
+/* Bilan */
+.score{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.ring{width:120px;height:120px;flex:none}
+table.t{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+table.t th{background:var(--th);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;text-align:left}
+table.t td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:middle;line-height:1.6}
+table.t tr:nth-child(even) td{background:#FAFBFA}
+table.t td.c{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.meter{display:block;width:100%;min-width:60px;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%}
+.pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 9px;color:var(--white);white-space:nowrap}
+.pill.g{background:var(--green)} .pill.o{background:var(--ochre)} .pill.r{background:var(--red)}
+.tablewrap{overflow-x:auto}
+
+/* Fenêtre de rappel */
+.overlay{position:fixed;inset:0;background:rgba(20,28,24,.55);display:grid;place-items:center;padding:20px;z-index:20}
+.overlay .paper{max-width:760px;width:100%;max-height:88vh;overflow:auto}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Téléphone */
+@media (pointer:coarse){.actions .hint{display:none}}
+@media (max-width:560px){
+  body{font-size:14.5px;padding-block:10px 24px}
+  .sheet{gap:12px}
+  .paper{padding:calc(10px + 16px) 14px 16px;border-radius:4px}
+  .paper::before{height:10px}
+  .cover{padding:24px 14px 22px}
+  .cover .mono{font-size:24px;margin-bottom:8px}
+  .cover .h-ar{font-size:24px}
+  .cover h1{font-size:32px}
+  .cover .sub{font-size:10.5px;margin-top:10px}
+  .cover .fams{margin-top:12px;gap:5px}
+  .cover .fams span{font-size:9px;padding:4px 9px}
+  .big-title{font-size:24px}
+  .tocnote{padding:8px 12px;font-size:12.5px;gap:10px}
+  .tocnote .ic{width:26px;height:26px;font-size:13px}
+  .toc .it{gap:0 10px;padding:6px 10px;grid-template-columns:38px minmax(0,1fr)}
+  .toc .it .n{grid-row:1 / span 2;min-width:34px}
+  .toc .it .ti{padding-block:2px 0}
+  .toc .it .pp{grid-column:2;text-align:left;max-width:none;white-space:nowrap;font-size:11.5px;padding-bottom:2px}
+  .toc .it .ti{font-size:13.5px}
+  .toc .it .ti small{font-size:11px}
+  .fhead{padding:12px 14px;border-radius:12px}
+  .fhead .tags,.fhead .row{padding-right:44px}
+  .fnum{width:34px;height:34px;font-size:17px;right:12px;top:10px}
+  .ftag{font-size:9px;padding:2px 8px;letter-spacing:.1em}
+  .fhead h2{font-size:21px}
+  .fhead .arn{font-size:24px;margin-left:0}
+  .retenir{padding:9px 12px;border-left-width:5px}
+  .retenir p{font-size:14px}
+  .block{margin-top:18px}
+  .bt{font-size:10px;letter-spacing:.1em;margin-bottom:9px;align-items:flex-start;line-height:1.5}
+  .bt .n{margin-top:1px}
+  .bt::after{align-self:center}
+  .progress{margin-top:10px}
+  .question{padding:2px 8px 6px;border-radius:12px}
+  .question .line{font-size:34px;line-height:2.05;word-spacing:4px}
+  .chips{gap:10px 14px}
+  .wordchips{gap:5px}
+  .chip{font-size:23px;min-width:40px;height:52px;padding:0 6px;border-radius:9px}
+  .nonebtn{margin-top:12px;font-size:12.5px}
+  .opts{gap:8px}
+  .opt{padding:8px 6px}
+  .opt.long{padding:6px 8px;gap:8px}
+  .opt.long .res{font-size:23px}
+  .astuce,.piege,.ok{padding:10px 12px;gap:9px}
+  .ic{width:22px;height:22px;font-size:11px}
+  .box-body p,.box-body li{font-size:13.5px;line-height:2}
+  .box-body ul{padding-left:16px}
+  .read .ar{font-size:24px}
+  .read em{font-size:14px}
+  .actions .hint{display:none}
+  .actions{margin-top:16px;flex-direction:column-reverse;align-items:stretch;gap:8px}
+  .actions > span{display:flex;flex-direction:column-reverse;gap:8px}
+  .btn{justify-content:center;padding:12px 18px;width:100%}
+  .w{min-width:0;padding:2px 12px 6px}
+  .w .ar{font-size:23px}
+  .card .big-sign{font-size:36px}
+  .st .q{font-size:13.5px;padding:7px 12px}
+  .st .res .ar{font-size:22px}
+  .jd{font-size:13px;padding:9px 12px}
+  .ring{width:96px;height:96px}
+  .score{gap:14px}
+  table.t{font-size:12.5px}
+  table.t th,table.t td{padding:7px 8px}
+  .foot{margin-top:18px;font-size:10px}
+  .overlay{padding:10px}
+  .overlay .paper{max-height:92vh}
+}
+@media (max-width:360px){
+  .chip{font-size:21px;min-width:36px;height:48px}
+  .question .line{font-size:30px}
+  .opts:not(.long3) .opt .res{font-size:18px}
+  .opt .cond{font-size:10.5px}
+}
+/* Fiche 2 */
+.opts.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.opts.two .opt{flex-direction:row;justify-content:center;padding:14px 10px;gap:10px}
+.opts.two .opt .k{align-self:center;flex:none}
+.opts.two .opt .cond{font-size:14px;line-height:1.45;text-align:left}
+.lettres{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;direction:rtl;margin-top:8px}
+.lt{font-family:var(--ar);font-size:21px;line-height:1;width:36px;height:42px;display:grid;place-items:center;border-radius:8px;background:var(--sand);border:1px solid var(--line)}
+.card .big-sign{white-space:nowrap}
+@media (max-width:560px){.opts.two .opt .cond{font-size:12.5px}.opts.two .opt{padding:12px 6px;gap:6px}.lt{width:32px;height:38px;font-size:19px}}
+</style>
+
+<div class="sheet" id="view"></div>
+<div class="overlay" id="ov" hidden></div>
+
+<script>
+/* ============ DONNÉES ============ */
+/* Exo 7 : {lettre|code} = lettre muette. W hamza waṣl au milieu · L voyelle longue avant ٱ · Z petit zéro · S lām solaire */
+const E7 = [
+ ["فِ{ى|L} {ٱ|W}لۡحَيَوٰةِ","fi‿l-ḥayāti"],
+ ["لِتَذۡهَبُو{ا۟|Z}","litadh·habū"],
+ ["ٱلۡمَالُ","al-mālu"],
+ ["أُوتُ{و|L}{ا۟|Z} {ٱ|W}لۡعِلۡمَ","ūtu‿l-ʿilma"],
+ ["فِ{ى|L} {ٱ|W}لۡمِيزَانِ","fi‿l-mīzāni"],
+ ["وَ{ٱ|W}تَّقُوهُ","wa‿ttaqūhu"],
+ ["لَمِنَ {ٱ|W}لۡمُرۡسَلِينَ","lamina‿l-mursalīna"],
+ ["بِهَٰدِ{ى|L} {ٱ|W}لۡعُمۡىِ","bihādi‿l-ʿumyi"],
+ ["ءَامَنُو{ا۟|Z}","āmanū"],
+ ["تَوَلَّوۡ{ا۟|Z}","tawallaw"],
+ ["أَقۡصَ{ا|L} {ٱ|W}لۡمَدِينَةِ","aqṣa‿l-madīnati"],
+ ["فِ{ى|L} {ٱ|W}لۡبَحۡرِ","fi‿l-baḥri"],
+ ["عَلَيۡهَ{ا|L} {ٱ|W}لۡمَوۡتَ","ʿalayha‿l-mawta"],
+ ["ٱلۡمَصِيرُ","al-maṣīru"],
+ ["عَلَ{ى|L} {ٱ|W}لۡعَرۡشِ","ʿala‿l-ʿarshi"],
+ ["وَمَلَإِ{ي۟|Z}هِمۡ","wa mala'ihim"],
+ ["وَأَقۡرِضُو{ا۟|Z}","wa aqriḍū"],
+ ["هَٰذَ{ا|L} {ٱ|W}لۡوَعۡدُ","hādha‿l-waʿdu"],
+ ["وَأُ{و۟|Z}لِى","wa ulī"],
+ ["وَأَمَّ{ا|L} {ٱ|W}لَّذِينَ","wa amma‿lladhīna"],
+ ["وَهُوَ {ٱ|W}لۡخَلَّٰقُ","wa huwa‿l-khallāqu"],
+ ["لِأُ{و۟|Z}لِ{ى|L} {ٱ|W}لۡأَلۡبَٰبِ","li uli‿l-albābi"],
+ ["لِشَ{ا۟|Z}ىۡءٍ","lishay'in"],
+ ["وَقَالُ{و|L}{ا۟|Z} {ٱ|W}تَّخَذَ","wa qālu‿ttakhadha"],
+ ["مَ{ا|L} {ٱ|W}لۡحُطَمَةُ","ma‿l-ḥuṭamatu"],
+ ["فَلَ{ا|L} {ٱ|W}قۡتَحَمَ","fala‿qtaḥama"],
+ ["إِلَّ{ا|L} {ٱ|W}بۡتِغَآءَ","illa‿btighā'a"],
+ ["هُوَ {ٱ|W}لۡأَبۡتَرُ","huwa‿l-abtaru"],
+ ["كَ{ٱ|W}لۡعِهۡنِ","ka‿l-ʿihni"],
+ ["بِرَبِّ {ٱ|W}لۡفَلَقِ","birabbi‿l-falaqi"],
+ ["فَ{ٱ|W}دۡخُلِى","fa‿dkhulī"],
+ ["ٱرۡجِعِىٓ","irjiʿī"],
+ ["ٱلۡقَارِعَةُ","al-qāriʿatu"],
+ ["ذُ{و|L} {ٱ|W}لۡقُوَّةِ","dhu‿l-quwwati"],
+ ["وَ{ٱ|W}صۡبِرۡ","wa‿ṣbir"],
+ ["فِ{ى|L} {ٱ|W}لۡقُرۡءَانِ","fi‿l-qur'āni"],
+ ["عَلَ{ى|L} {ٱ|W}لۡكَٰفِرِينَ","ʿala‿l-kāfirīna"],
+ ["إِلَ{ى|L} {ٱ|W}لۡجَنَّةِ","ila‿l-jannati"],
+ ["وَ{ٱ|W}لۡقَمَرِ","wa‿l-qamari"],
+ ["وَ{ٱ|W}لۡعَصۡرِ","wa‿l-ʿaṣri"],
+ ["وَ{ٱ|W}لۡفَجۡرِ","wa‿l-fajri"],
+ ["بِ{ٱ|W}لۡحَقِّ","bi‿l-ḥaqqi"],
+ ["قَالُ{و|L}{ا۟|Z} {ٱ|W}دۡعُ","qālu‿dʿu"],
+ ["ذَ{ا|L} {ٱ|W}لۡقُرۡبَىٰ","dha‿l-qurbā"],
+ ["إِذَ{ا|L} {ٱ|W}لۡقَمَرُ","idha‿l-qamaru"],
+ ["فِ{ى|L} {ٱ|W}لۡكِتَٰبِ","fi‿l-kitābi"],
+ ["ٱلۡفَلَقِ","al-falaqi"],
+ ["وَ{ٱ|W}قۡرَأۡ","wa‿qra'"],
+ ["وَهُوَ {ٱ|W}لۡعَزِيزُ","wa huwa‿l-ʿazīzu"],
+];
+
+/* Exo 8 : [mot, voyelle de départ, "al" si le mot commence par l'article, sens, lecture, remarque] */
+const E8 = [
+ ["ٱعۡلَمُوٓا۟","i","","« sachez »","iʿlamū"],
+ ["ٱنظُرۡ","u","","« regarde »","unẓur"],
+ ["ٱذۡهَبۡ","i","","« va »","idh·hab"],
+ ["ٱصۡلَوۡهَا","i","","« brûlez-y »","iṣlawhā"],
+ ["ٱدۡخُلُوهَا","u","","« entrez-y »","udkhulūhā"],
+ ["ٱدۡعُوا۟","u","","« invoquez »","udʿū"],
+ ["ٱنظُرُوٓا۟","u","","« regardez »","unẓurū"],
+ ["ٱعۡدِلُوا۟","i","","« soyez équitables »","iʿdilū"],
+ ["ٱشۡدُدۡ","u","","« renforce »","ushdud"],
+ ["ٱتۡلُ","u","","« récite »","utlu"],
+ ["ٱهۡدِنَا","i","","« guide-nous »","ihdinā"],
+ ["ٱقۡرَأۡ","i","","« lis »","iqra'"],
+ ["ٱرۡكُضۡ","u","","« frappe (du pied) »","urkuḍ"],
+ ["ٱدۡفَعۡ","i","","« repousse »","idfaʿ"],
+ ["ٱخۡرُجۡ","u","","« sors »","ukhruj"],
+ ["ٱسۡلُكۡ","u","","« introduis »","usluk"],
+ ["ٱعۡبُدُوا۟","u","","« adorez »","uʿbudū"],
+ ["ٱذۡكُرُوا۟","u","","« souvenez-vous »","udhkurū"],
+ ["ٱشۡكُرُوا۟","u","","« remerciez »","ushkurū"],
+ ["ٱسۡجُدُوا۟","u","","« prosternez-vous »","usjudū"],
+ ["ٱمۡكُثُوٓا۟","u","","« restez »","umkuthū"],
+ ["ٱدۡعُ","u","","« appelle »","udʿu"],
+ ["ٱجۡتُثَّتۡ","u","","« a été arrachée »","ujtuththat"],
+ ["ٱضۡطُرَّ","u","","« a été contraint »","uḍṭurra"],
+ ["ٱرۡجِعِىٓ","i","","« retourne »","irjiʿī"],
+ ["ٱصۡبِرۡ","i","","« patiente »","iṣbir"],
+ ["ٱضۡرِب","i","","« frappe »","iḍrib"],
+ ["ٱسۡتَغۡفِرُوا۟","i","","« demandez pardon »","istaghfirū","Piège : ne regarde pas la ḍamma de la fin (رُ). Seule la 3e lettre compte."],
+ ["ٱسۡتَعِينُوا۟","i","","« cherchez de l'aide »","istaʿīnū"],
+ ["ٱهۡبِطُوا۟","i","","« descendez »","ihbiṭū","Piège : la ḍamma est sur la 4e lettre (طُ), pas sur la 3e."],
+ ["ٱرۡكَعُوا۟","i","","« inclinez-vous »","irkaʿū","Piège : la ḍamma est sur la 4e lettre (عُ), pas sur la 3e."],
+ ["ٱسۡمَعُوا۟","i","","« écoutez »","ismaʿū"],
+ ["ٱعۡمَلُوا۟","i","","« œuvrez »","iʿmalū"],
+ ["ٱنفَطَرَتۡ","i","","« s'est fendu »","infaṭarat"],
+ ["ٱنشَقَّتۡ","i","","« s'est déchiré »","inshaqqat"],
+ ["ٱقۡتَرَبَتِ","i","","« s'est approchée »","iqtarabat"],
+ ["ٱسۡتَوَىٰ","i","","« s'est établi »","istawā"],
+ ["ٱسۡتَكۡبَرَ","i","","« s'est enorgueilli »","istakbara"],
+ ["ٱتَّقُوا۟","i","","« craignez »","ittaqū","Piège : la chadda compte pour 2 lettres. ٱ + تۡ + تَ : la 3e lettre est تَ (fatḥa), pas قُ."],
+ ["ٱتَّبِعُوا۟","i","","« suivez »","ittabiʿū","Piège : la chadda compte pour 2 lettres. ٱ + تۡ + تَ : la 3e lettre est تَ (fatḥa)."],
+ ["ٱطَّلَعَ","i","","« a regardé »","iṭṭalaʿa","La chadda compte pour 2 lettres : ٱ + طۡ + طَ."],
+ ["ٱلۡقَارِعَةُ","a","al","« le fracas »","al-qāriʿatu"],
+ ["ٱلۡحَمۡدُ","a","al","« la louange »","al-ḥamdu"],
+ ["ٱلۡحَآقَّةُ","a","al","« l'inéluctable »","al-ḥāqqatu"],
+ ["ٱلَّذِينَ","a","al","« ceux qui »","alladhīna"],
+ ["ٱلَّتِى","a","al","« celle qui »","allatī"],
+ ["ٱلۡقَمَرُ","a","al","« la lune »","al-qamaru"],
+ ["ٱلۡعَصۡرِ","a","al","« le temps »","al-ʿaṣri"],
+ ["ٱلۡفَجۡرِ","a","al","« l'aube »","al-fajri"],
+ ["ٱلۡأَرۡضُ","a","al","« la terre »","al-arḍu"],
+ ["ٱلۡكِتَٰبُ","a","al","« le Livre »","al-kitābu"],
+ ["ٱلۡحُطَمَةُ","a","al","« le broyeur »","al-ḥuṭamatu","Piège : la 3e lettre حُ a une ḍamma, mais on regarde d'abord l'article ٱلۡ. Il passe en premier : a."],
+ ["ٱلۡأُولَىٰ","a","al","« la première »","al-ūlā","L'article ٱلۡ passe en premier : a."],
+ ["ٱبۡنَتَ","i","","« fille »","ibnata"],
+ ["ٱمۡرَأَتُ","i","","« femme »","imra'atu"],
+ ["ٱثۡنَانِ","i","","« deux »","ithnāni"],
+ ["ٱثۡنَتَا","i","","« deux (fém.) »","ithnatā"],
+ ["ٱبۡتِغَآءَ","i","","« recherche »","ibtighā'a"],
+ ["ٱسۡتِكۡبَارًا","i","","« par orgueil »","istikbāran"],
+ ["ٱخۡتِلَٰفُ","i","","« l'alternance »","ikhtilāfu"],
+ ["ٱفۡتِرَآءً","i","","« par invention »","iftirā'an"],
+ ["ٱسۡتِغۡفَارُ","i","","« la demande de pardon »","istighfāru"],
+];
+
+/* Exo 9 : [mot 1 sans tanwīn, voyelle du tanwīn, mot 2, voyelle de ٱ au début, lecture, sourate, verset, mot 1 écrit (si particulier)] */
+const SUR = {2:"al-Baqara",4:"an-Nisā'",7:"al-Aʿrāf",9:"at-Tawba",12:"Yūsuf",14:"Ibrāhīm",16:"an-Naḥl",19:"Maryam",22:"al-Ḥajj",23:"al-Mu'minūn",25:"al-Furqān",26:"ash-Shuʿarā'",35:"Fāṭir",45:"al-Jāthiya",50:"Qāf",53:"an-Najm",67:"al-Mulk",75:"al-Qiyāma",79:"an-Nāziʿāt",96:"al-ʿAlaq",104:"al-Humaza",112:"al-Ikhlāṣ"};
+const E9 = [
+ ["عُزَيۡر","u","ٱبۡنُ","i","ʿuzayru ni‿bnu",9,"30"],
+ ["يَوۡمَئِذ","i","ٱلۡحَقُّ","a","yawma'idhi ni‿l-ḥaqqu",7,"8"],
+ ["شَيۡئ","a","ٱتَّخَذَهَا","i","shay'a ni‿ttakhadhahā",45,"9"],
+ ["مَثَل","a","ٱلۡقَوۡمُ","a","mathala ni‿l-qawmu",7,"177"],
+ ["كَرَمَاد","i","ٱشۡتَدَّتۡ","i","karamādi ni‿shtaddat",14,"18"],
+ ["رَجُل","u","ٱفۡتَرَىٰ","i","rajulu ni‿ftarā",23,"38"],
+ ["يَوۡمَئِذ","i","ٱلسَّلَمَ","a","yawma'idhi ni‿s-salama",16,"87"],
+ ["عَاد","a","ٱلۡأُولَىٰ","a","ʿāda ni‿l-ūlā",53,"50"],
+ ["نُوح","i","ٱلۡمُرۡسَلِينَ","a","nūḥi ni‿l-mursalīna",26,"105"],
+ ["خَيۡر","u","ٱطۡمَأَنَّ","i","khayru ni‿ṭma'anna",22,"11"],
+ ["يَوۡمَئِذ","i","ٱلۡمَسَاقُ","a","yawma'idhi ni‿l-masāqu",75,"30"],
+ ["لُوط","i","ٱلۡمُرۡسَلِينَ","a","lūṭi ni‿l-mursalīna",26,"160"],
+ ["عَاد","u","ٱلۡمُرۡسَلِينَ","a","ʿādu ni‿l-mursalīna",26,"123"],
+ ["أَحَد","u","ٱللَّهُ","a","aḥadu ni‿llāhu",112,"1-2"],
+ ["فَتِيل","a","ٱنظُرۡ","u","fatīla ni‿nẓur",4,"49-50"],
+ ["مُبِين","i","ٱقۡتُلُوا۟","u","mubīni ni‿qtulū",12,"8-9"],
+ ["قَدِير","u","ٱلَّذِى","a","qadīru ni‿lladhī",67,"1-2"],
+ ["مُرِيب","i","ٱلَّذِى","a","murībi ni‿lladhī",50,"25-26"],
+ ["خَبِير","a","ٱلَّذِى","a","khabīra ni‿lladhī",25,"58-59"],
+ ["لُمَزَة","i","ٱلَّذِى","a","lumazati ni‿lladhī",104,"1-2"],
+ ["عَلَق","i","ٱقۡرَأۡ","i","ʿalaqi ni‿qra'",96,"2-3"],
+ ["طُو","a","ٱذۡهَبۡ","i","ṭuwa ni‿dh·hab",79,"16-17","طُوًى"],
+ ["عَدۡن","i","ٱلَّتِى","a","ʿadni ni‿llatī",19,"61"],
+ ["بِغُلَٰم","i","ٱسۡمُهُۥ","i","bighulāmi ni‿smuhū",19,"7"],
+ ["خَيۡر","a","ٱلۡوَصِيَّةُ","a","khayra ni‿l-waṣiyyatu",2,"180"],
+ ["قَوۡم","a","ٱللَّهُ","a","qawma ni‿llāhu",7,"164"],
+ ["بِرَحۡمَة","i","ٱدۡخُلُوا۟","u","biraḥmati ni‿dkhulū",7,"49"],
+ ["مُنِيب","i","ٱدۡخُلُوهَا","u","munībi ni‿dkhulūhā",50,"33-34"],
+ ["خَبِيثَة","i","ٱجۡتُثَّتۡ","u","khabīthati ni‿jtuththat",14,"26"],
+ ["يَوۡمَئِذ","i","ٱلۡمُسۡتَقَرُّ","a","yawma'idhi ni‿l-mustaqarru",75,"12"],
+ ["نُفُور","a","ٱسۡتِكۡبَارًا","i","nufūra ni‿stikbāran",35,"42-43"],
+];
+
+/* Exemples du livret (exo 7) qui demandent les 2 fiches : seulement dans « Toutes les règles » */
+const E7C = [
+ ["عَلَ{ى|L} {ٱ|W}{ل|S}طِّينِ","ʿala‿ṭ-ṭīni"],
+ ["مِنَ {ٱ|W}{ل|S}صَّٰبِرِينَ","mina‿ṣ-ṣābirīna"],
+ ["يُرۡسِلُ {ٱ|W}{ل|S}رِّيَٰحَ","yursilu‿r-riyāḥa"],
+ ["فِ{ى|L} {ٱ|W}{ل|S}نَّارِ","fi‿n-nāri"],
+ ["فَ{ٱ|W}{ل|S}زَّٰجِرَٰتِ","fa‿z-zājirāti"],
+ ["وَ{ٱ|W}بۡنَ {ٱ|W}{ل|S}سَّبِيلِ","wa‿bna‿s-sabīli"],
+ ["عَلَ{ى|L} {ٱ|W}{ل|S}نَّهَارِ","ʿala‿n-nahāri"],
+ ["وَ{ٱ|W}{ل|S}شَّهَٰدَةِ","wa‿sh-shahādati"],
+ ["وَعَمِلُ{و|L}{ا۟|Z} {ٱ|W}{ل|S}صَّٰلِحَٰتِ","wa ʿamilu‿ṣ-ṣāliḥāti"],
+ ["إِذَ{ا|L} {ٱ|W}{ل|S}سَّمَآءُ {ٱ|W}نفَطَرَتۡ","idha‿s-samā'u‿nfaṭarat"],
+ ["يَٰٓأَيُّهَ{ا|L} {ٱ|W}{ل|S}نَّاسُ","yā ayyuha‿n-nāsu"],
+ ["وَأَقِيمُ{و|L}{ا۟|Z} {ٱ|W}{ل|S}صَّلَوٰةَ","wa aqīmu‿ṣ-ṣalāta"],
+ ["فِ{ى|L} {ٱ|W}{ل|S}سَّمَٰوَٰتِ","fi‿s-samāwāti"],
+];
+
+/* Fiche 2 : [mot, lecture, sens, remarque] : le signe sur le lām dit tout (sukūn = lunaire, rien + chadda après = solaire) */
+const WORDS = [
+ ["ٱلۡأَرۡضُ","al-arḍu","la terre"],
+ ["ٱلۡإِنسَٰنُ","al-insānu","l'être humain"],
+ ["ٱلۡأَبۡتَرُ","al-abtaru","celui qui est sans postérité"],
+ ["ٱلۡبَيۡتُ","al-baytu","la maison"],
+ ["ٱلۡبَحۡرُ","al-baḥru","la mer"],
+ ["ٱلۡبَيِّنَةُ","al-bayyinatu","la preuve claire"],
+ ["ٱلۡجِنَّةِ","al-jinnati","les djinns"],
+ ["ٱلۡجَنَّةُ","al-jannatu","le Paradis"],
+ ["ٱلۡجِبَالُ","al-jibālu","les montagnes"],
+ ["ٱلۡحَمۡدُ","al-ḥamdu","la louange"],
+ ["ٱلۡحَقُّ","al-ḥaqqu","la vérité"],
+ ["ٱلۡحَطَبِ","al-ḥaṭabi","le bois"],
+ ["ٱلۡخَنَّاسِ","al-khannāsi","celui qui se dérobe"],
+ ["ٱلۡخَيۡرُ","al-khayru","le bien"],
+ ["ٱلۡعُقَدِ","al-ʿuqadi","les nœuds"],
+ ["ٱلۡعَصۡرِ","al-ʿaṣri","le temps"],
+ ["ٱلۡعَرۡشُ","al-ʿarshu","le Trône"],
+ ["ٱلۡعِلۡمُ","al-ʿilmu","la science"],
+ ["ٱلۡغَيۡبُ","al-ghaybu","l'invisible"],
+ ["ٱلۡغَفُورُ","al-ghafūru","le Pardonneur"],
+ ["ٱلۡفَلَقِ","al-falaqi","l'aube naissante"],
+ ["ٱلۡفَتۡحُ","al-fatḥu","la victoire"],
+ ["ٱلۡفَجۡرِ","al-fajri","l'aube"],
+ ["ٱلۡقَمَرُ","al-qamaru","la lune"],
+ ["ٱلۡقَدۡرِ","al-qadri","la Destinée"],
+ ["ٱلۡقَارِعَةُ","al-qāriʿatu","le fracas"],
+ ["ٱلۡكِتَٰبُ","al-kitābu","le Livre"],
+ ["ٱلۡكَوۡثَرَ","al-kawthara","l'abondance"],
+ ["ٱلۡكَٰفِرُونَ","al-kāfirūna","les mécréants"],
+ ["ٱلۡمَالُ","al-mālu","les biens"],
+ ["ٱلۡمِسۡكِينَ","al-miskīna","le pauvre"],
+ ["ٱلۡمَلِكُ","al-maliku","le Roi"],
+ ["ٱلۡهُدَىٰ","al-hudā","la bonne direction"],
+ ["ٱلۡوَسۡوَاسِ","al-waswāsi","le mauvais conseiller"],
+ ["ٱلۡوَعۡدُ","al-waʿdu","la promesse"],
+ ["ٱلۡوَلَدُ","al-waladu","l'enfant"],
+ ["ٱلۡيَتِيمَ","al-yatīma","l'orphelin"],
+ ["ٱلۡيَوۡمَ","al-yawma","le jour"],
+ ["ٱلۡيَقِينُ","al-yaqīnu","la certitude"],
+ ["ٱلتَّكَاثُرُ","at-takāthuru","la course aux richesses"],
+ ["ٱلتَّوۡبَةُ","at-tawbatu","le repentir"],
+ ["ٱلتِّينِ","at-tīni","le figuier"],
+ ["ٱلثَّمَرَٰتِ","ath-thamarāti","les fruits"],
+ ["ٱلثَّوَابِ","ath-thawābi","la récompense"],
+ ["ٱلثَّاقِبُ","ath-thāqibu","celui qui transperce"],
+ ["ٱلدِّينِ","ad-dīni","la religion"],
+ ["ٱلدُّنۡيَا","ad-dunyā","la vie d'ici-bas"],
+ ["ٱلدَّارُ","ad-dāru","la demeure"],
+ ["ٱلذِّكۡرَىٰ","adh-dhikrā","le rappel"],
+ ["ٱلذُّنُوبَ","adh-dhunūba","les péchés"],
+ ["ٱلذَّهَبَ","adh-dhahaba","l'or"],
+ ["ٱلرُّجۡعَىٰ","ar-rujʿā","le retour"],
+ ["ٱلرَّحۡمَٰنُ","ar-raḥmānu","le Tout Miséricordieux"],
+ ["ٱلرَّحِيمُ","ar-raḥīmu","le Très Miséricordieux"],
+ ["ٱلزَّكَوٰةَ","az-zakāta","l'aumône"],
+ ["ٱلزَّيۡتُونِ","az-zaytūni","l'olivier"],
+ ["ٱلزُّبُرِ","az-zuburi","les Écritures"],
+ ["ٱلسَّآئِلَ","as-sā'ila","celui qui demande"],
+ ["ٱلسَّمَآءُ","as-samā'u","le ciel"],
+ ["ٱلسَّلَٰمُ","as-salāmu","la paix"],
+ ["ٱلشَّمۡسُ","ash-shamsu","le soleil"],
+ ["ٱلشِّتَآءِ","ash-shitā'i","l'hiver"],
+ ["ٱلشَّيۡطَٰنُ","ash-shayṭānu","le diable"],
+ ["ٱلصَّمَدُ","aṣ-ṣamadu","Celui que l'on implore"],
+ ["ٱلصَّيۡفِ","aṣ-ṣayfi","l'été"],
+ ["ٱلصَّلَوٰةَ","aṣ-ṣalāta","la prière"],
+ ["ٱلصُّبۡحِ","aṣ-ṣubḥi","le matin"],
+ ["ٱلضُّحَىٰ","aḍ-ḍuḥā","le jour montant"],
+ ["ٱلضُّرُّ","aḍ-ḍurru","le mal"],
+ ["ٱلطَّارِقُ","aṭ-ṭāriqu","l'astre de la nuit"],
+ ["ٱلطَّيِّبَٰتُ","aṭ-ṭayyibātu","les bonnes choses"],
+ ["ٱلطَّعَامِ","aṭ-ṭaʿāmi","la nourriture"],
+ ["ٱلظَّٰلِمِينَ","aẓ-ẓālimīna","les injustes"],
+ ["ٱلظُّلُمَٰتُ","aẓ-ẓulumātu","les ténèbres"],
+ ["ٱلظَّنُّ","aẓ-ẓannu","la supposition"],
+ ["ٱلنَّاسِ","an-nāsi","les gens"],
+ ["ٱلنَّارُ","an-nāru","le Feu"],
+ ["ٱلنَّعِيمِ","an-naʿīmi","les délices"],
+ ["ٱلنَّهَارُ","an-nahāru","le jour"],
+ ["ٱلنَّاصِيَةِ","an-nāṣiyati","le toupet"],
+];
+
+/* ============ OUTILS ============ */
+const COMB = /[ؐ-ًؚ-ٰٟۖ-ۜ۟-۪ۤۧۨ-ۭ࣓-ࣿ]/;
+const HAR = {a:"َ",i:"ِ",u:"ُ"};
+const TAN = {a:"ً",i:"ٍ",u:"ٌ"};
+const HAMZA = {a:"أَ",i:"إِ",u:"أُ"};
+const VNAME = {a:"fatḥa",i:"kasra",u:"ḍamma"};
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TIE = '<span class="tie" aria-hidden="true"></span>';
+const TR = s => esc(s).replace(/‿/g,TIE);
+const AR = s => `<span class="ar">${esc(s)}</span>`;
+const shuffle = a => {a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const clusters = w => {const out=[];for(const ch of w){if(COMB.test(ch)&&out.length)out[out.length-1]+=ch;else out.push(ch);}return out;};
+
+function parse7(s){
+  const out=[];let i=0,word=0;
+  while(i<s.length){
+    const c=s[i];
+    if(c===" "){word++;i++;continue;}
+    if(c==="{"){const j=s.indexOf("}",i);const [t,code]=s.slice(i+1,j).split("|");out.push({t,silent:true,code,word});i=j+1;continue;}
+    let t=c;i++;while(i<s.length&&COMB.test(s[i])){t+=s[i];i++;}
+    out.push({t,silent:false,word});
+  }
+  return out;
+}
+function w1Of(d){ // mot 1 écrit avec son tanwīn
+  if(d[7]) return d[7];
+  const last=d[0].slice(-1);
+  return d[0]+TAN[d[1]]+(d[1]==="a"&&last!=="ة"&&last!=="ء"?"ا":"");
+}
+function third(w){ // 3e lettre (la hamza compte comme 1re ; la chadda compte pour 2 lettres)
+  const c=clusters(w);
+  if(c[1]&&c[1].includes("ّ")) return {l:c[1].replace("ّ",""),sh:true};
+  return {l:c[2]||"",sh:false};
+}
+
+/* Banque de questions */
+const BANK=[];
+const SUKUN="\u06E1", SHADDA="\u0651";
+const isLun = w => clusters(w)[1].includes(SUKUN);
+const tags7 = toks => {
+  const tags=new Set(toks.filter(t=>t.silent).map(t=>t.code==="S"?"sol":t.code));
+  if(toks[0].t==="ٱ"&&!toks[0].silent) tags.add("D");
+  return [...tags];
+};
+/* type = la forme de la question · ex = l'exercice dans le sommaire */
+E7.forEach((d,i)=>{const toks=parse7(d[0]);BANK.push({id:"7-"+i,type:7,ex:7,d,toks,tags:tags7(toks)});});
+E7C.forEach((d,i)=>{const toks=parse7(d[0]);BANK.push({id:"c-"+i,type:7,ex:"c",d,toks,tags:tags7(toks)});});
+E8.forEach((d,i)=>{
+  const tags=[d[1]]; if(d[5]&&/Piège/.test(d[5])) tags.push("P");
+  BANK.push({id:"8-"+i,type:8,ex:8,d,tags});
+});
+E9.forEach((d,i)=>BANK.push({id:"9-"+i,type:9,ex:9,d,tags:["T"]}));
+WORDS.forEach((d,i)=>{
+  const w=d[0], lun=isLun(w), kind=lun?"lun":"sol";
+  BANK.push({id:"21-"+i,type:21,ex:21,d,lun,tags:[kind]});
+  const toks=clusters(w).map((t,k)=>({t,silent:!lun&&k===1,code:"S",word:0}));
+  BANK.push({id:"22-"+i,type:7,ex:22,d,lun,toks,tags:[kind]});
+  if(/^ٱلۡ[أإء]/.test(w)) return; // doubler une hamza n'aurait pas de sens
+  BANK.push({id:"23-"+i,type:23,ex:23,d,lun,tags:lun?["lun"]:["sol","dbl"]});
+});
+
+const TAGS={
+  D:"ٱ au début : je la prononce",
+  W:"ٱ au milieu : je ne la prononce pas",
+  L:"Voyelle longue juste avant ٱ : elle tombe",
+  Z:"Petit zéro ۟ : jamais prononcé",
+  a:"Au début, le mot commence par ٱلۡ → a",
+  u:"Au début, 3e lettre avec ḍamma → u",
+  i:"Au début, ni a ni u → i",
+  P:"Les pièges (chadda, ḍamma mal placée)",
+  T:"Tanwīn + ٱ → nūn + kasra (ni)",
+  lun:"Lām avec sukūn (lunaire) : je le lis",
+  sol:"Lām dénué (solaire) : je ne le lis pas",
+  dbl:"Lettre solaire : je la double"
+};
+const MODES={
+  7:{fam:"fa",n:"7",title:"Les lettres muettes",sub:"Livret · Exercice 7 · « Entoure les lettres qui ne se prononcent pas »",ex:"فِى ٱلۡأَرۡضِ",consigne:"Touche les lettres qui ne se prononcent pas, puis vérifie."},
+  8:{fam:"fb",n:"8",title:"Au début : quelle voyelle ?",sub:"Livret · Exercice 8 · « Coche la bonne prononciation du hamzatou-l-waṣl »",ex:"ٱنظُرۡ",consigne:"Je commence ma lecture par ce mot. Comment je prononce la hamza waṣl ?"},
+  9:{fam:"ff",n:"9",title:"Tanwīn + hamza waṣl",sub:"Livret · Exercice 9 · « Entoure la bonne prononciation »",ex:"عَدۡنٍ ٱلَّتِى",consigne:"Quelle est la bonne prononciation ?"},
+  21:{fam:"fa",n:"1",title:"Lunaire ou solaire ?",sub:"Je regarde le lām : sukūn, ou rien avec une chadda après",ex:"ٱلۡقَمَرُ",consigne:"Dans ce mot, est-ce que je lis le lām ?"},
+  22:{fam:"fb",n:"2",title:"Le lām muet",sub:"Je touche la lettre qui ne se prononce pas",ex:"ٱلشَّمۡسُ",consigne:"Touche la lettre qui ne se prononce pas, puis vérifie."},
+  23:{fam:"ff",n:"3",title:"La bonne prononciation",sub:"Je choisis la lecture juste parmi trois",ex:"ٱلنَّاسِ",consigne:"Je commence ma lecture par ce mot. Quelle est la bonne prononciation ?"},
+  c:{fam:"fe",n:"★",title:"Les lettres muettes",consigne:"Touche les lettres qui ne se prononcent pas, puis vérifie."},
+  f1:{fam:"fa",n:"★",title:"Fiche 1 : tout mélanger",sub:"Les exercices 7, 8 et 9 dans le désordre",pool:[7,8,9]},
+  f2:{fam:"fb",n:"★",title:"Fiche 2 : tout mélanger",sub:"Les 3 exercices du lām dans le désordre",pool:[21,22,23]},
+  all:{fam:"fe",n:"★",title:"Toutes les règles",sub:"Fiches 1 et 2 mélangées, avec les mots où les deux règles se rencontrent",pool:[7,8,9,21,22,23,"c"]},
+  err:{fam:"fn",n:"↺",title:"Mes erreurs",sub:"Seulement les questions ratées la dernière fois"}
+};
+
+const ficheOf = ex => ex==="c"?"Fiches 1 et 2":ex>=21?"Fiche 2 · Lām de al-":"Fiche 1 · Hamza waṣl";
+
+/* ============ MÉMOIRE (navigateur de l'apprenante) ============ */
+const store={
+  get(k,def){try{const v=localStorage.getItem("hw1-"+k);return v?JSON.parse(v):def;}catch(e){return def;}},
+  set(k,v){try{localStorage.setItem("hw1-"+k,JSON.stringify(v));}catch(e){}}
+};
+let STATS=store.get("stats",{}), BEST=store.get("best",{}), LEN=store.get("len",10);
+const errIds=()=>BANK.filter(q=>STATS[q.id]&&STATS[q.id].last===false).map(q=>q.id);
+
+/* ============ LA RÈGLE (fiche 1) ============ */
+const R_HEAD = `<div class="fhead">
+    <div class="tags"><span class="ftag fill">Lettres muettes</span><span class="ftag">Fiche 1</span></div>
+    <div class="row"><h2>La hamza waṣl</h2><span class="arn">هَمۡزَةُ ٱلۡوَصۡلِ</span></div>
+    <span class="fnum">1</span>
+  </div>
+  <div class="retenir"><span class="lab">À retenir</span><p>Je la prononce <b>seulement si je commence ma lecture par ce mot</b>. Au milieu, elle <b>disparaît</b> : je relie au mot d'avant.</p></div>`;
+const R1 = `<div class="block"><div class="bt"><span class="n">1</span>Je repère</div>
+  <div class="g2">
+    <div class="card neutral"><div class="big-sign">أ &nbsp; إ</div><p><b>Hamza qaṭʿ</b> : petite tête de ʿayn.<br>Toujours prononcée.</p></div>
+    <div class="card"><div class="big-sign">ٱ</div><p><b>Hamza waṣl</b> : petit ṣād sur l'alif.<br>Prononcée seulement au début.</p></div>
+  </div></div>`;
+const R2 = `<div class="block"><div class="bt"><span class="n">2</span>Au milieu : muette</div>
+  <div class="words">
+    <div class="w"><span class="ar">بِرَبِّ ٱلۡفَلَقِ</span><span class="t">birabbi‿l-falaq</span></div>
+    <div class="w"><span class="ar">كَٱلۡعِهۡنِ</span><span class="t">ka‿l-ʿihn</span></div>
+    <div class="w"><span class="ar">فَٱدۡخُلِى</span><span class="t">fa‿dkhulī</span></div>
+  </div></div>`;
+const R3 = `<div class="block"><div class="bt"><span class="n">3</span>Deux cas au milieu</div>
+  <div class="stack">
+    <div class="astuce"><span class="ic">ā</span><div class="box-body"><span class="lab">Voyelle longue juste avant ٱ</span>
+      <p>Elle tombe aussi, sinon deux sukūn se suivraient.</p>
+      <div class="words" style="justify-content:flex-start;margin-top:6px"><div class="w pr"><span class="ar">مَا ٱلۡحُطَمَةُ</span><span class="t">ma‿l-ḥuṭamah</span></div><div class="w pr"><span class="ar">فِى ٱلۡأَرۡضِ</span><span class="t">fi‿l-arḍ</span></div></div></div></div>
+    <div class="astuce"><span class="ic" style="font-size:11px">ni</span><div class="box-body"><span class="lab">Tanwīn juste avant ٱ</span>
+      <p>Le tanwīn est un nūn caché. J'ajoute une <b>kasra</b> sur ce nūn pour faire la liaison, même si elle n'est pas écrite : « ni ».</p>
+      <div class="words" style="justify-content:flex-start;margin-top:6px"><div class="w pr"><span class="ar">عَدۡنٍ ٱلَّتِى</span><span class="t">ʿadni ni‿llatī</span></div><div class="w pr"><span class="ar">أَحَدٌ ٱللَّهُ</span><span class="t">aḥadu ni‿llāh</span></div></div></div></div>
+  </div></div>`;
+const R4 = `<div class="block"><div class="bt"><span class="n">4</span>Au début : quelle voyelle ?</div>
+  <div class="steps">
+    <div class="st"><div class="q">① Le mot commence par l'article <span class="ar">ٱلۡ</span> ?</div><div class="arrow">→<br>OUI</div><div class="res"><span class="vb">a</span><span class="ar">ٱلۡحَمۡدُ</span><em>al-ḥamdu</em></div></div>
+    <div class="no">↓ NON</div>
+    <div class="st"><div class="q">② La 3e lettre a une <b>ḍamma</b> ?<small>La hamza compte comme 1re lettre.</small></div><div class="arrow">→<br>OUI</div><div class="res"><span class="vb">u</span><span class="ar">ٱدۡخُلِى</span><em>udkhulī</em></div></div>
+    <div class="no">↓ NON</div>
+    <div class="st"><div class="q">③ Ni a, ni u ?</div><div class="arrow">→<br>ALORS</div><div class="res"><span class="vb">i</span><span class="ar">ٱقۡرَأۡ</span><em>iqra'</em></div></div>
+  </div>
+  <div class="piege" style="margin-top:14px"><span class="ic">!</span><div class="box-body"><span class="lab">Piège</span>
+    <p>La <b>chadda compte pour 2 lettres</b> : <span class="ar">ٱتَّقُوا۟</span> = ٱ + تۡ + تَ. La 3e lettre est تَ, donc <b>i</b> : <i>ittaqū</i>.</p></div></div>
+</div>`;
+const R5 = `<div class="block"><div class="bt"><span class="n">5</span>Aussi dans l'exercice 7</div>
+  <div class="astuce neutral"><span class="ic">+</span><div class="box-body"><p>Une lettre qui porte le <b>petit zéro</b> ne se prononce jamais : <span class="ar">قَالُوا۟</span> <i>qālū</i>.</p></div></div>
+</div>`;
+const R_JD = `<div class="jd" style="margin-top:20px"><b>Je dis</b>« J'ai une hamza waṣl au milieu, alors je ne la prononce pas. »</div>`;
+const L_HEAD = `<div class="fhead">
+    <div class="tags"><span class="ftag fill">Lettres muettes</span><span class="ftag">Fiche 2</span></div>
+    <div class="row"><h2>Le lām de al-</h2><span class="arn">ٱلۡ</span></div>
+    <span class="fnum">2</span>
+  </div>
+  <div class="retenir"><span class="lab">À retenir</span><p>Le lām de <span class="ar">ٱلۡ</span> (le, la, les) <b>se lit</b> devant une lettre lunaire, et <b>disparaît</b> devant une lettre solaire, qu'on double.</p></div>`;
+const L1 = `<div class="block"><div class="bt"><span class="n">1</span>Je regarde le lām</div>
+  <div class="g2">
+    <div class="card"><div class="big-sign">ٱلۡقَمَرُ</div><p><b>Lunaire : je le lis.</b><br>Le lām porte un sukūn.<br><i>al-qamaru</i></p></div>
+    <div class="card neutral"><div class="big-sign">ٱلشَّمۡسُ</div><p><b>Solaire : il disparaît.</b><br>Le lām est dénué, et la lettre d'après porte une chadda.<br><i>ash-shamsu</i></p></div>
+  </div></div>`;
+const L2 = `<div class="block"><div class="bt"><span class="n">2</span>Pourquoi ?</div>
+  <div class="stack">
+    <div class="astuce"><span class="ic">☾</span><div class="box-body"><span class="lab">Devant une lettre lunaire</span><p>Le lām reste net, car il est suivi d'une lettre lunaire.</p></div></div>
+    <div class="astuce"><span class="ic">☀</span><div class="box-body"><span class="lab">Devant une lettre solaire</span><p>Le lām fusionne avec la lettre solaire. Il ne se lit plus, et cette lettre est doublée : c'est la chadda.</p></div></div>
+  </div></div>`;
+const LUN=["ء","ب","ج","ح","خ","ع","غ","ف","ق","ك","م","ه","و","ي"], SOL=["ت","ث","د","ذ","ر","ز","س","ش","ص","ض","ط","ظ","ل","ن"];
+const chipsOf=a=>`<div class="lettres">${a.map(l=>`<span class="lt">${l}</span>`).join("")}</div>`;
+const L3 = `<div class="block"><div class="bt"><span class="n">3</span>Les 28 lettres</div>
+  <div class="g2">
+    <div class="card"><p><b>Les 14 lunaires</b></p>${chipsOf(LUN)}<p class="ar" style="font-size:22px;line-height:2;margin-top:6px">ٱبۡغِ حَجَّكَ وَخَفۡ عَقِيمَهُۥ</p></div>
+    <div class="card neutral"><p><b>Les 14 solaires</b></p>${chipsOf(SOL)}</div>
+  </div>
+  <div class="astuce neutral" style="margin-top:12px"><span class="ic">✎</span><div class="box-body"><span class="lab">Astuce</span><p>Pas besoin des listes pour lire : regarde le lām. Sukūn → je le lis. Rien, et une chadda après → je le saute.</p></div></div>
+</div>`;
+const L_JD = `<div class="jd" style="margin-top:20px"><b>Je dis</b>« J'ai un lām qamariyyah (lunaire), je le prononce. » · « J'ai un lām shamsiyyah (solaire), je ne le prononce pas. »</div>`;
+const FOCUS = {7:[R1,R2,R3,R5],8:[R4],9:[R3,R2],21:[L1,L2],22:[L1,L2],23:[L1,L2],c:[R3,L1,L2]};
+const foot = (label="↑ Sommaire",href="#sommaire") => `<div class="foot"><span>iQranee · Fiches 1 et 2 · Je m'entraîne</span><a href="${href}" class="up" data-nav="${href.slice(1)}">${label}</a></div>`;
+
+function fixTies(root){ // remplace ‿ par un petit arc de liaison
+  root.querySelectorAll(".t,em,i").forEach(el=>{if(el.textContent.includes("‿"))el.innerHTML=TR(el.textContent);});
+}
+function wireNav(root){
+  root.querySelectorAll("[data-nav]").forEach(a=>a.onclick=e=>{e.preventDefault();
+    const id=a.dataset.nav; if(S||!document.getElementById(id)) home(id); else document.getElementById(id).scrollIntoView({behavior:"smooth"});});
+}
+function openRule(q){
+  const head = q.ex==="c"||q.ex<21 ? R_HEAD : L_HEAD;
+  const ov=document.getElementById("ov");
+  ov.innerHTML=`<div class="paper fa" role="dialog" aria-modal="true" aria-label="Rappel de la règle">${head}${FOCUS[q.ex].join("")}
+    <div class="actions"><span></span><button class="btn" id="ovclose">Fermer et reprendre</button></div></div>`;
+  ov.hidden=false;
+  const close=()=>{ov.hidden=true;ov.innerHTML="";};
+  ov.onclick=e=>{if(e.target===ov)close();};
+  document.getElementById("ovclose").onclick=close;
+  document.getElementById("ovclose").focus();
+  fixTies(ov);
+}
+
+/* ============ ACCUEIL ============ */
+const view=document.getElementById("view");
+let S=null;
+function home(target){
+  S=null;
+  const n=t=>BANK.filter(q=>q.ex===t).length;
+  const ne=errIds().length;
+  const row=(m,cnt,extra="")=>{const M=MODES[m];
+    return `<button class="it ${M.fam}" data-mode="${m}" ${extra}><span class="n">${M.n}</span>
+      <span class="ti">${M.title}<small>${M.sub}</small></span>
+      ${M.ex?`<span class="ar">${M.ex}</span>`:`<span class="ar" aria-hidden="true"></span>`}
+      <span class="pp">${BEST[m]!=null?`Meilleur : ${BEST[m]} %`:cnt}</span></button>`;};
+  view.innerHTML=`
+  <section class="paper cover">
+    <div class="mono">Q</div>
+    <div class="h-ar">ٱلتَّجۡوِيدُ</div>
+    <h1>Je m'entraîne</h1>
+    <div class="sub">Fiche 1 · La hamza waṣl<br>Fiche 2 · Le lām de al-</div>
+    <div class="fams"><span>${BANK.length} questions</span><span>Correction expliquée</span><span>Lecture Ḥafṣ</span></div>
+  </section>
+
+  <section class="paper fa" id="sommaire">
+    <div class="eyebrow">Sommaire</div>
+    <h2 class="big-title">Je choisis mon entraînement</h2>
+    <div class="tocnote"><span class="ic">☝</span><p><b>Ce sommaire est cliquable.</b> Touche une ligne pour lancer l'exercice. Une question ratée revient un peu plus tard dans la série. En bas de chaque page, « ↑ Sommaire » te ramène ici.</p></div>
+    <nav class="toc" aria-label="Sommaire">
+      <div class="grp">Fiche 1 · La hamza waṣl</div>
+      ${row(7,`${n(7)} exemples`)}${row(8,`${n(8)} exemples`)}${row(9,`${n(9)} exemples`)}
+      ${row("f1","au hasard")}
+      <div class="grp">Fiche 2 · Le lām de al-</div>
+      ${row(21,`${n(21)} exemples`)}${row(22,`${n(22)} exemples`)}${row(23,`${n(23)} exemples`)}
+      ${row("f2","au hasard")}
+      <div class="grp">Toutes les règles</div>
+      ${row("all","au hasard")}
+      ${row("err",ne?`${ne} question${ne>1?"s":""}`:"aucune",ne?"":"disabled")}
+      <div class="grp">Les règles à relire</div>
+      <a class="it fa" href="#regle1" data-nav="regle1"><span class="n">1</span><span class="ti">La hamza waṣl<small>Fiche 1 · ce qu'il faut savoir</small></span><span class="ar">ٱ</span><span class="pp">Lire</span></a>
+      <a class="it fa" href="#regle2" data-nav="regle2"><span class="n">2</span><span class="ti">Le lām de al-<small>Fiche 2 · ce qu'il faut savoir</small></span><span class="ar">ٱلۡ</span><span class="pp">Lire</span></a>
+    </nav>
+    <div class="lenrow"><span id="lenlbl">Questions par série :</span>
+      <div class="seg" role="group" aria-labelledby="lenlbl">${[10,20,0].map(v=>`<button data-len="${v}" aria-pressed="${LEN===v}">${v||"Toutes"}</button>`).join("")}</div>
+    </div>
+    ${foot("↓ Les règles","#regle1")}
+  </section>
+
+  <section class="paper fa" id="regle1">
+    ${R_HEAD}${R1}${R2}${R3}${R4}${R5}${R_JD}
+    ${foot()}
+  </section>
+
+  <section class="paper fa" id="regle2">
+    ${L_HEAD}${L1}${L2}${L3}${L_JD}
+    ${foot()}
+  </section>`;
+  fixTies(view);
+  view.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>start(b.dataset.mode));
+  view.querySelectorAll("[data-len]").forEach(b=>b.onclick=()=>{LEN=+b.dataset.len;store.set("len",LEN);home("sommaire");});
+  wireNav(view);
+  if(target){const el=document.getElementById(target);el&&el.scrollIntoView();} else window.scrollTo(0,0);
+}
+
+/* ============ SÉRIE ============ */
+function start(mode){
+  const M=MODES[mode];
+  const wanted = M.pool || (mode==="err"?null:[+mode]);
+  let pool = wanted ? BANK.filter(q=>wanted.includes(q.ex)) : BANK.filter(q=>errIds().includes(q.id));
+  pool=shuffle(pool);
+  if(M.pool&&LEN){ // équilibre les exercices
+    const by=new Map(M.pool.map(e=>[e,[]]));pool.forEach(q=>by.get(q.ex).push(q));
+    const out=[];let k=0;while(out.length<LEN&&out.length<pool.length){const e=M.pool[k%M.pool.length];if(by.get(e).length)out.push(by.get(e).shift());k++;}
+    pool=shuffle(out);
+  } else if(LEN) pool=pool.slice(0,LEN);
+  S={mode,queue:pool.map(q=>({q,retry:false})),pos:0,total:pool.length,first:{},streak:0,bestStreak:0,answered:false};
+  ask();
+}
+function progressHTML(){
+  const done=Object.keys(S.first).length;
+  return `<div class="progress" id="progress"><div class="prog" aria-hidden="true"><i style="width:${(done/S.total*100).toFixed(1)}%"></i></div>
+    <span class="count">${done} / ${S.total}</span>${S.streak>=3?`<span class="streak">${S.streak} d'affilée</span>`:""}</div>`;
+}
+function ask(){
+  if(S.pos>=S.queue.length) return results();
+  const {q,retry}=S.queue[S.pos];
+  S.answered=false;S.sel=new Set();S.none=false;
+  const M=MODES[q.ex];
+  const body = q.type===7?body7(q):q.type===8?body8(q):q.type===9?body9(q):q.type===21?body1(q):body3(q);
+  view.innerHTML=`<section class="paper ${M.fam}">
+    <div class="fhead">
+      <div class="tags"><span class="ftag fill">${q.ex==="c"?"Toutes les règles":"Exercice "+M.n}</span><span class="ftag">${ficheOf(q.ex)}</span>${retry?`<span class="ftag warn">Deuxième chance</span>`:""}</div>
+      <div class="row"><h2>${M.title}</h2></div>
+      <span class="fnum">${M.n}</span>
+    </div>
+    ${progressHTML()}
+    <div class="block"><div class="bt"><span class="n">1</span>${M.consigne}</div>${body.q}</div>
+    <div class="block"><div class="bt"><span class="n">2</span>${q.type===7?"Les lettres":"Ma réponse"}</div>${body.a}</div>
+    <div class="block" id="fbwrap" hidden><div class="bt"><span class="n">3</span>Correction</div><div id="fb"></div></div>
+    <div class="actions">
+      <button class="btn ghost" id="rule">Revoir la règle</button>
+      <span class="hint" id="hint"></span>
+      <button class="btn" id="go" ${q.type===7?"":"hidden"}>Vérifier</button>
+    </div>
+    ${foot()}
+  </section>`;
+  wireNav(view);
+  document.getElementById("rule").onclick=()=>openRule(q);
+  wire(q);
+  window.scrollTo(0,0);
+}
+
+/* ----- Exo 7 ----- */
+function phrase7(q,marks){
+  let html="",w=0;
+  q.toks.forEach((t,i)=>{
+    if(t.word!==w){html+=" ";w=t.word;}
+    html+=`<span class="${marks?marks[i]||"":(S.sel.has(i)?"sel":"")}">${esc(t.t)}</span>`;
+  });
+  return html;
+}
+function body7(q){
+  const words=[];q.toks.forEach((t,i)=>{(words[t.word]=words[t.word]||[]).push(i);});
+  return {
+    q:`<div class="question"><div class="line" id="phr">${phrase7(q)}</div></div>`,
+    a:`<div class="chips">${words.map(ws=>`<div class="wordchips">${ws.map(i=>`<button class="chip" data-i="${i}" aria-pressed="false" aria-label="lettre ${i+1}">${esc(q.toks[i].t)}</button>`).join("")}</div>`).join("")}</div>
+       <button class="nonebtn" id="none" aria-pressed="false">Aucune lettre muette</button>`
+  };
+}
+/* ----- Exo 8 ----- */
+function body8(q){
+  return {
+    q:`<div class="question"><div class="line">${esc(q.d[0])}</div></div>`,
+    a:`<div class="opts">${["u","i","a"].map((v,k)=>`<button class="opt" data-v="${v}"><span class="k">${k+1}</span><span class="res">ٱ ← ${HAMZA[v]}</span><span class="cond"><b>${v}</b> · ${VNAME[v]}</span></button>`).join("")}</div>`
+  };
+}
+/* ----- Exo 9 ----- */
+function opts9(q){
+  const [a,v,w2,h]=q.d;
+  const w1=w1Of(q.d);
+  const wrongN = v==="u"?"نَ":(v==="a"?"نُ":(Math.random()<.5?"نَ":"نُ"));
+  const d=[
+    {k:"drop",t:a+HAR[v]+" "+w2},
+    {k:"hamza",t:w1+" "+HAMZA[h]+w2.slice(1)},
+    {k:"vowel",t:a+HAR[v]+wrongN+" "+w2},
+  ];
+  return shuffle([{k:"ok",t:a+HAR[v]+"نِ "+w2},...shuffle(d).slice(0,2)]);
+}
+function body9(q){
+  q.cur=opts9(q);
+  return {
+    q:`<div class="question"><div class="line">${esc(w1Of(q.d)+" "+q.d[2])}</div>
+       <p class="ref">Sourate ${SUR[q.d[5]]} (${q.d[5]}), verset ${q.d[6]}${q.d[6].includes("-")?" · en liant les deux versets":""}</p></div>`,
+    a:`<div class="opts long3">${q.cur.map((o,k)=>`<button class="opt long" data-k="${k}"><span class="k">${k+1}</span><span class="res">${esc(o.t)}</span></button>`).join("")}</div>`
+  };
+}
+
+const qLine=(w,id="")=>`<div class="question"><div class="line"${id?` id="${id}"`:""}>${w}</div></div>`;
+
+/* ----- Exercice 1 : lunaire ou solaire ----- */
+function body1(q){
+  return {
+    q:qLine(esc(q.d[0])),
+    a:`<div class="opts two"><button class="opt" data-v="lun"><span class="k">1</span><span class="cond"><b>Je lis le lām</b><br>lunaire</span></button>
+       <button class="opt" data-v="sol"><span class="k">2</span><span class="cond"><b>Je ne le lis pas</b><br>solaire</span></button></div>`
+  };
+}
+/* ----- Exercice 3 : bonne prononciation ----- */
+function opts3(q){
+  const w=q.d[0], c=clusters(w), rest=c.slice(2), first=rest[0], tail=rest.slice(1).join("");
+  const base=first[0], marks=first.slice(1).replace(SHADDA,"");
+  const H="أَ", LAM="لۡ";
+  if(q.lun){
+    return shuffle([
+      {k:"ok",t:H+LAM+first+tail},
+      {k:"lunDbl",t:H+base+SHADDA+marks+tail},
+      {k:"lunDrop",t:H+first+tail},
+    ]);
+  }
+  const d=[
+    {k:"solRead",t:H+LAM+first+tail},
+    {k:"solReadNo",t:H+LAM+base+marks+tail},
+    {k:"solNoDbl",t:H+base+marks+tail},
+  ];
+  return shuffle([{k:"ok",t:H+first+tail},...shuffle(d).slice(0,2)]);
+}
+function body3(q){
+  q.cur=opts3(q);
+  return {
+    q:qLine(esc(q.d[0])),
+    a:`<div class="opts long3">${q.cur.map((o,k)=>`<button class="opt long" data-k="${k}"><span class="k">${k+1}</span><span class="res">${esc(o.t)}</span></button>`).join("")}</div>`
+  };
+}
+
+/* ----- Interactions ----- */
+function wire(q){
+  const go=document.getElementById("go"), hint=document.getElementById("hint");
+  if(q.type===7){
+    hint.innerHTML=`puis <kbd>Entrée</kbd>`;
+    const chips=[...view.querySelectorAll(".chip")], none=document.getElementById("none");
+    const refresh=()=>{chips.forEach(c=>c.setAttribute("aria-pressed",S.sel.has(+c.dataset.i)));none.setAttribute("aria-pressed",S.none);
+      document.getElementById("phr").innerHTML=phrase7(q);go.disabled=!(S.sel.size||S.none);};
+    chips.forEach(c=>c.onclick=()=>{if(S.answered)return;const i=+c.dataset.i;S.sel.has(i)?S.sel.delete(i):S.sel.add(i);S.none=false;refresh();});
+    none.onclick=()=>{if(S.answered)return;S.none=!S.none;if(S.none)S.sel.clear();refresh();};
+    go.onclick=()=>S.answered?next():check7(q);
+    refresh();
+  } else {
+    hint.innerHTML=q.type===21?`touches <kbd>1</kbd> <kbd>2</kbd>`:`touches <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>`;
+    view.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(!S.answered)({8:check8,9:check9,21:check1,23:check3}[q.type])(q,b);});
+    go.onclick=next;
+  }
+}
+function record(q,ok){
+  const {retry}=S.queue[S.pos];
+  if(!retry && !(q.id in S.first)) S.first[q.id]=ok;
+  const st=STATS[q.id]||{ok:0,ko:0};
+  ok?st.ok++:st.ko++;st.last=ok;STATS[q.id]=st;store.set("stats",STATS);
+  if(ok){S.streak++;S.bestStreak=Math.max(S.bestStreak,S.streak);}
+  else{S.streak=0;
+    if(!retry){const at=Math.min(S.pos+4,S.queue.length);S.queue.splice(at,0,{q,retry:true});}
+  }
+  S.answered=true;
+  const go=document.getElementById("go");
+  go.hidden=false;go.disabled=false;
+  go.textContent=S.pos+1>=S.queue.length?"Voir mon bilan →":"Question suivante →";
+  document.getElementById("hint").innerHTML=`<kbd>Entrée</kbd> pour continuer`;
+  document.getElementById("progress").outerHTML=progressHTML();
+  go.focus({preventScroll:true});
+}
+function fbBox(ok,inner){
+  document.getElementById("fbwrap").hidden=false;
+  document.getElementById("fb").innerHTML= ok
+    ? `<div class="ok"><span class="ic">✓</span><div class="box-body"><span class="lab">C'est juste</span>${inner}</div></div>`
+    : `<div class="piege"><span class="ic">!</span><div class="box-body"><span class="lab">Pas tout à fait</span>${inner}</div></div>`;
+  document.getElementById("fbwrap").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+const WHY7={
+  W:t=>`${AR(t)} hamza waṣl au milieu : je ne la prononce pas, je relie au mot d'avant.`,
+  L:t=>`${AR(t)} voyelle longue juste avant une hamza waṣl : elle tombe aussi (sinon deux sukūn se suivraient).`,
+  Z:t=>`${AR(t)} porte le petit zéro ۟ : cette lettre ne se prononce jamais.`,
+  S:t=>`${AR(t)} lām dénué (lām solaire) : il fusionne avec la lettre d'après, qui est doublée. Je ne le lis pas.`
+};
+function check7(q){
+  const silent=new Set(q.toks.map((t,i)=>t.silent?i:-1).filter(i=>i>=0));
+  const ok = silent.size===0 ? (S.none&&S.sel.size===0) : (!S.none&&S.sel.size===silent.size&&[...silent].every(i=>S.sel.has(i)));
+  const marks={};
+  view.querySelectorAll(".chip").forEach(c=>{const i=+c.dataset.i;c.disabled=true;c.setAttribute("aria-pressed","false");
+    if(silent.has(i)&&S.sel.has(i)){c.classList.add("ok");marks[i]="g-ok";}
+    else if(S.sel.has(i)){c.classList.add("bad");marks[i]="g-bad";}
+    else if(silent.has(i)){c.classList.add("miss");marks[i]="g-miss";}
+  });
+  document.getElementById("none").disabled=true;
+  document.getElementById("phr").innerHTML=phrase7(q,marks);
+  const li=[];
+  if(!silent.size&&q.toks[0].t==="ٱ") li.push(`Le mot commence par ${AR("ٱ")} : je commence ma lecture ici, donc je la prononce. Aucune lettre n'est muette.`);
+  if(q.ex===22&&q.lun) li.push(whyLam(q));
+  q.toks.forEach((t,i)=>{if(t.silent)li.push(WHY7[t.code](t.t)+(S.sel.has(i)?"":` <b style="color:var(--ochre-deep)">(oubliée)</b>`));});
+  q.toks.forEach((t,i)=>{if(S.sel.has(i)&&!t.silent)
+    li.push(t.t==="ٱ"&&i===0?`${AR(t.t)} est au début : je commence ma lecture ici, donc je la prononce.`:`${AR(t.t)} se prononce.`);});
+  if(silent.size&&q.toks[0].t==="ٱ"&&!q.toks[0].silent&&!S.sel.has(0)) li.push(`${AR("ٱ")} du début se prononce : c'est là que je commence.`);
+  const legend=`<div class="legend"><span class="l-ok">trouvée</span><span class="l-miss">oubliée</span><span class="l-bad">se prononce</span></div>`;
+  fbBox(ok,`<div class="read">Je lis : <em>${TR(q.d[1])}</em>${q.ex===22?` <span class="gl">« ${esc(q.d[2])} »</span>`:""}</div><ul>${li.map(x=>`<li>${x}</li>`).join("")}</ul>${ok?"":legend}`);
+  record(q,ok);
+}
+function check8(q,btn){
+  const [w,v,al,gloss,tr,note]=q.d, ok=btn.dataset.v===v;
+  view.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(b.dataset.v===v)b.classList.add("ok");else if(b===btn)b.classList.add("bad");else b.classList.add("dim");});
+  let why;
+  if(al) why=`① Le mot commence par l'article ${AR("ٱلۡ")} → je commence par <b>a</b>.`;
+  else { const t=third(w);
+    why = v==="u" ? `① Pas d'article ${AR("ٱلۡ")}. ② La 3e lettre ${AR(t.l)} porte une <b>ḍamma</b> → je commence par <b>u</b>.`
+                  : `① Pas d'article ${AR("ٱلۡ")}. ② La 3e lettre ${AR(t.l)} n'a pas de ḍamma. ③ Ni a ni u → je commence par <b>i</b>.`;
+    if(t.sh&&!note) why+=` <span class="muted">(La chadda compte pour 2 lettres.)</span>`;
+  }
+  fbBox(ok,`<div class="read">Je commence : <span class="ar">${esc(HAMZA[v]+w.slice(1))}</span> <em>${esc(tr)}</em> <span class="gl">${esc(gloss)}</span></div>
+     <ul><li>${why}</li>${note?`<li>${esc(note)}</li>`:""}</ul>`);
+  record(q,ok);
+}
+const WHY9={
+  ok:"Le tanwīn est un nūn caché. Devant la hamza waṣl, ce nūn prend une kasra (ni) et la hamza waṣl disparaît. Sans cette kasra, deux sukūn se suivraient.",
+  drop:"Ici le tanwīn a été supprimé. Or il ne disparaît jamais : son nūn reste et prend une kasra.",
+  hamza:"Ici on prononce la hamza waṣl. Au milieu de la lecture, elle ne se prononce pas : on relie.",
+  vowel:"Le nūn prend toujours une kasra (ni), jamais une fatḥa ni une ḍamma, quelle que soit la voyelle du tanwīn."
+};
+function check9(q,btn){
+  const o=q.cur[+btn.dataset.k], ok=o.k==="ok";
+  view.querySelectorAll(".opt").forEach((b,k)=>{b.disabled=true;if(q.cur[k].k==="ok")b.classList.add("ok");else if(b===btn)b.classList.add("bad");else b.classList.add("dim");});
+  const good=q.cur.find(x=>x.k==="ok");
+  fbBox(ok,`<div class="read">Je lis : <span class="ar">${esc(good.t)}</span> <em>${TR(q.d[4])}</em></div>
+     <ul>${ok?"":`<li><b>Ta réponse :</b> ${esc(WHY9[o.k])}</li>`}<li>${esc(WHY9.ok)}</li></ul>`);
+  record(q,ok);
+}
+const nextLetter = w => clusters(w)[2];
+const readLine = q => `<div class="read"><span>Je lis :</span> <em>${esc(q.d[1])}</em> <span class="gl">« ${esc(q.d[2])} »</span></div>`;
+function whyLam(q){
+  return q.lun
+    ? `Le lām porte un <b>sukūn</b>, et la lettre d'après (${AR(nextLetter(q.d[0]))}) est lunaire : je le lis.`
+    : `Le lām est <b>dénué</b>, et la lettre d'après (${AR(nextLetter(q.d[0]))}) porte une <b>chadda</b>. Elle est solaire : le lām fusionne avec elle, je ne le lis pas.`;
+}
+function check1(q,btn){
+  const good=q.lun?"lun":"sol", ok=btn.dataset.v===good;
+  view.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(b.dataset.v===good)b.classList.add("ok");else if(b===btn)b.classList.add("bad");else b.classList.add("dim");});
+  fbBox(ok,`${readLine(q)}<ul><li>${whyLam(q)}</li>${q.d[3]?`<li>${esc(q.d[3])}</li>`:""}</ul>`);
+  record(q,ok);
+}
+const WHY3={
+  lunDbl:"Ici le lām a disparu et la lettre est doublée : c'est ce qu'on fait devant une lettre solaire. Or ce lām porte un sukūn : je le lis.",
+  lunDrop:"Ici le lām a disparu. Or il porte un sukūn : je le lis.",
+  solRead:"Ici on lit le lām. Or il est dénué : je ne le lis pas.",
+  solReadNo:"Ici on lit le lām et la chadda a disparu. Or le lām est dénué : je ne le lis pas, et je double la lettre d'après.",
+  solNoDbl:"Le lām a bien disparu, mais la lettre d'après n'est plus doublée. La chadda se prononce : je la double."
+};
+function check3(q,btn){
+  const o=q.cur[+btn.dataset.k], ok=o.k==="ok";
+  view.querySelectorAll(".opt").forEach((b,k)=>{b.disabled=true;if(q.cur[k].k==="ok")b.classList.add("ok");else if(b===btn)b.classList.add("bad");else b.classList.add("dim");});
+  const good=q.cur.find(x=>x.k==="ok");
+  fbBox(ok,`<div class="read"><span>Je lis :</span> ${AR(good.t)} <em>${esc(q.d[1])}</em> <span class="gl">« ${esc(q.d[2])} »</span></div>
+     <ul>${ok?"":`<li><b>Ta réponse :</b> ${esc(WHY3[o.k])}</li>`}<li>${whyLam(q)}</li></ul>`);
+  record(q,ok);
+}
+function next(){S.pos++;ask();}
+
+/* ============ BILAN ============ */
+function results(){
+  const ids=Object.keys(S.first), good=ids.filter(id=>S.first[id]).length, pct=ids.length?Math.round(good/ids.length*100):0;
+  if(S.mode!=="err"){BEST[S.mode]=Math.max(BEST[S.mode]||0,pct);store.set("best",BEST);}
+  const per={};
+  ids.forEach(id=>{const q=BANK.find(x=>x.id===id);q.tags.forEach(t=>{per[t]=per[t]||{n:0,ok:0};per[t].n++;if(S.first[id])per[t].ok++;});});
+  const order=["D","W","L","Z","a","u","i","P","T","lun","sol","dbl"].filter(t=>per[t]);
+  const col=p=>p>=85?"var(--green)":p>=60?"var(--ochre)":"var(--red)";
+  const pill=p=>p>=85?`<span class="pill g">Acquis</span>`:p>=60?`<span class="pill o">Presque</span>`:`<span class="pill r">À revoir</span>`;
+  const wrong=ids.filter(id=>!S.first[id]).map(id=>BANK.find(x=>x.id===id));
+  const msg = pct===100?"Parfait. La règle est acquise.":pct>=85?"Très bien. Encore un petit effort sur les points en orange.":pct>=60?"C'est en bonne voie. Relis la règle, puis refais tes erreurs.":"Relis la règle tranquillement, puis refais une série.";
+  const R=52,C=2*Math.PI*R, M=MODES[S.mode]||MODES.all;
+  const wordOf=q=>q.type===9?w1Of(q.d)+" "+q.d[2]:q.d[0].replace(/\{([^|]+)\|[A-Z]\}/g,"$1");
+  const readOf=q=>q.ex>=21||q.type===7?q.d[1]:q.d[4];
+  const mode=S.mode;
+  view.innerHTML=`<section class="paper ${M.fam}">
+    <div class="fhead">
+      <div class="tags"><span class="ftag fill">Mon bilan</span><span class="ftag">${M.title}</span></div>
+      <div class="row"><h2>${good} / ${ids.length} du premier coup</h2></div>
+      <span class="fnum">${M.n}</span>
+    </div>
+    <div class="block"><div class="score">
+      <svg class="ring" viewBox="0 0 120 120" role="img" aria-label="${pct} % de bonnes réponses">
+        <circle cx="60" cy="60" r="${R}" fill="none" stroke="var(--line)" stroke-width="10"/>
+        <circle cx="60" cy="60" r="${R}" fill="none" stroke="${col(pct)}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${(C*pct/100).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 60 60)"/>
+        <text x="60" y="68" text-anchor="middle" font-family="Montserrat, sans-serif" font-size="26" font-weight="700" fill="var(--ink)">${pct} %</text>
+      </svg>
+      <div class="retenir" style="flex:1;min-width:220px;margin:0"><span class="lab">Mon résultat</span><p>${msg}${S.bestStreak>=3?` Meilleure série : ${S.bestStreak} bonnes réponses d'affilée.`:""}</p></div>
+    </div></div>
+    <div class="block"><div class="bt"><span class="n">1</span>Point par point</div>
+      <div class="tablewrap"><table class="t"><thead><tr><th>Ce que j'ai travaillé</th><th style="width:26%"></th><th style="text-align:right">Score</th><th></th></tr></thead><tbody>
+      ${order.map(t=>{const p=Math.round(per[t].ok/per[t].n*100);return `<tr><td>${esc(TAGS[t]).replace(/ٱلۡ|ٱ|۟/g,m=>`<span class="ar">${m}</span>`)}</td><td><span class="meter"><i style="width:${p}%;background:${col(p)}"></i></span></td><td class="c"><b>${per[t].ok}/${per[t].n}</b></td><td class="c">${pill(p)}</td></tr>`;}).join("")}
+      </tbody></table></div></div>
+    ${wrong.length?`<div class="block"><div class="bt"><span class="n">2</span>À revoir</div><div class="words">${wrong.map(q=>`<div class="w pr"><span class="ar">${esc(wordOf(q))}</span><span class="t">${TR(readOf(q))}</span></div>`).join("")}</div></div>`:""}
+    <div class="actions">
+      <button class="btn ghost" id="back">↑ Sommaire</button>
+      <span style="display:flex;gap:10px;flex-wrap:wrap">
+        ${wrong.length?`<button class="btn ghost" id="redo">Refaire mes ${wrong.length} erreur${wrong.length>1?"s":""}</button>`:""}
+        <button class="btn" id="again">Nouvelle série</button>
+      </span>
+    </div>
+    ${foot()}
+  </section>`;
+  wireNav(view);
+  document.getElementById("again").onclick=()=>start(mode);
+  document.getElementById("back").onclick=()=>home("sommaire");
+  const r=document.getElementById("redo");
+  if(r) r.onclick=()=>{const qs=shuffle(wrong);S={mode:"err",queue:qs.map(q=>({q,retry:false})),pos:0,total:qs.length,first:{},streak:0,bestStreak:0};ask();};
+  window.scrollTo(0,0);
+}
+
+/* Clavier */
+document.addEventListener("keydown",e=>{
+  if(!document.getElementById("ov").hidden){if(e.key==="Escape"){const c=document.getElementById("ovclose");c&&c.click();}return;}
+  if(!S) return;
+  const q=S.queue[S.pos]&&S.queue[S.pos].q;if(!q)return;
+  if(e.key==="Enter"){const go=document.getElementById("go");if(go&&!go.hidden&&!go.disabled){e.preventDefault();go.click();}return;}
+  if(!S.answered&&q.type!==7&&["1","2","3"].includes(e.key)){const b=view.querySelectorAll(".opt")[+e.key-1];b&&b.click();}
+});
+
+home();
+</script>
